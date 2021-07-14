@@ -1,4 +1,6 @@
 import './style.css';
+import events from './events.js';
+import './status.js';
 
 const toDoListWrapper = document.querySelector('.to-do-list-wrap');
 
@@ -36,11 +38,16 @@ const sortList = () => {
 const display = () => {
   initializeListWrapper();
 
-  toDoList.forEach((list) => {
+  toDoList.forEach((list, i) => {
     const li = document.createElement('li');
     const des = list.description;
-    li.innerHTML = `<input type='checkbox' id=${des} name=${des}>
-  <label for = ${des}>${des}</label>`;
+    const div = document.createElement('div');
+    div.innerHTML = `<input type='checkbox' id=${des} name=${des}>
+  <label draggable='true' for = ${des}>${des}</label>`;
+    div.draggable = true;
+    div.dataset.id = i;
+    div.classList.add('can-swap');
+    li.append(div);
     toDoListWrapper.append(li);
   });
 };
@@ -56,3 +63,4 @@ if (JSON.parse(localStorage.getItem('toDoList'))) {
 
 updateLocalStorage();
 display();
+events.setDragStart();
