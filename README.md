@@ -15,7 +15,7 @@ Additional description about the project and its features.
 
 ## Live Demo
 
-[Live Demo Link](https://livedemo.com)
+[Live Demo Link](https://flamboyant-khorana-e25906.netlify.app)
 
 
 ## Getting Started
@@ -40,8 +40,9 @@ Additional description about the project and its features.
 
 👤 **Author1**
 
-- GitHub: [@githubhandle](https://github.com/SimonGrchevski)
+- GitHub: [Github](https://github.com/SimonGrchevski)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/simon-grchevski-682935209/)
+- Twitter: [Twitter](https://twitter.com/grchevski)
 
 
 ## 🤝 Contributing
