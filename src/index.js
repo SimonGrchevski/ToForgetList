@@ -1,3 +1,4 @@
+import './style.css';
 const toDoListWrapper = document.querySelector('.to-do-list-wrap');
 
 class Task {
@@ -13,20 +14,27 @@ let toDoList = [new Task('wash the dishes', false, 5),
   new Task('Watch movie', false, 3)
 ];
 
-initializeListWrapper = () => {
+
+const initializeListWrapper = () => {
   toDoListWrapper.innerHTML = '';
-  const li = document.createElement('li').innerHTML = 'Todays to do';
+  const li = document.createElement('li');
+  const inpWrap = document.createElement('li');
   const inp = document.createElement('input');
+
+  li.innerHTML = 'Todays to do';
   inp.type = 'text';
   inp.className = 'newTask';
-  toDoListWrapper.append(li, inp);
+  inp.placeholder = 'Add to your list...';
+  inpWrap.append(inp);
+  toDoListWrapper.append(li, inpWrap);
 }
 
-sortList = () => {
-  toDoList = toDoList.sort((a, b) => a.index - b.index);
+
+const sortList = () => {
+  toDoList = toDoList.sort((a, b) => +a.index - +b.index);
 }
 
-display = () => {
+const display = () => {
 
   initializeListWrapper();
 
@@ -39,12 +47,12 @@ display = () => {
   })
 }
 
-updateLocalStorage = () => {
+const updateLocalStorage = () => {
   sortList();
   localStorage.setItem('toDoList', JSON.stringify(toDoList));
 }
 
-addTask = (newTask) => {
+const addTask = (newTask) => {
   toDoList.push(newTask);
   sortList();
   updateLocalStorage();

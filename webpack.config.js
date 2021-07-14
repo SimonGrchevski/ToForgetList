@@ -12,6 +12,7 @@
    devServer: {
      contentBase: './dist',
    },
+
    module: {
      rules: [{
        test: /\.css$/i,
