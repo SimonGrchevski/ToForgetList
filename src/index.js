@@ -13,16 +13,28 @@ let toDoList = [new Task('wash the dishes', false, 5),
   new Task('Watch movie', false, 3)
 ];
 
+initializeListWrapper = () => {
+  toDoListWrapper.innerHTML = '';
+  const li = document.createElement('li').innerHTML = 'Todays to do';
+  const inp = document.createElement('input');
+  inp.type = 'text';
+  inp.className = 'newTask';
+  toDoListWrapper.append(li, inp);
+}
 
 sortList = () => {
   toDoList = toDoList.sort((a, b) => a.index - b.index);
 }
 
 display = () => {
+
+  initializeListWrapper();
+
   toDoList.forEach(list => {
     const li = document.createElement('li');
-    li.innerHTML = `<input type='checkbox' id=${list.description} name=${list.description}>
-  <label for = ${list.description}>${list.description}</label>`
+    const des = list.description;
+    li.innerHTML = `<input type='checkbox' id=${des} name=${des}>
+  <label for = ${des}>${des}</label>`
     toDoListWrapper.append(li);
   })
 }
@@ -36,11 +48,12 @@ addTask = (newTask) => {
   toDoList.push(newTask);
   sortList();
   updateLocalStorage();
+  display();
 }
 
 if (JSON.parse(localStorage.getItem('toDoList'))) {
   toDoList = JSON.parse(localStorage.getItem('toDoList'));
-  display();
 }
 
 updateLocalStorage();
+display();
