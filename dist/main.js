@@ -1,0 +1,1 @@
+(()=>{const e=document.querySelector(".to-do-list-wrap");class t{constructor(e,t,o){this.description=e,this.completed=t,this.index=o}}const o=[new t("wash the dishes",!1,0),new t("complete to to list project",!1,1)];console.log(o.length),o.forEach((t=>{const o=document.createElement("li");o.innerHTML=t.description,e.append(o)}))})();
