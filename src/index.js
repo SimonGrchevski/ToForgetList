@@ -1,6 +1,6 @@
 import './style.css';
 import events from './events.js';
-import './status.js';
+import status from './status.js';
 
 export const toDoListWrapper = document.querySelector('.to-do-list-wrap');
 
@@ -47,14 +47,25 @@ export const display = () => {
     const li = document.createElement('li');
     const des = list.description;
     const div = document.createElement('div');
-    div.innerHTML = `<input type='checkbox' id=${des} name=${des}>
-  <label draggable='true' for = ${des}>${des}</label>`;
+    const inp = document.createElement('input');
+    inp.type = 'checkbox';
+    inp.classList.add('check');
+    inp.name = des;
+    const label = document.createElement('label');
+    label.draggable = true;
+    label.textContent = des;
+    if (list.completed) {
+      inp.checked = true;
+      label.classList.add('checked');
+    }
+    div.append(inp, label);
     div.draggable = true;
     div.dataset.id = list.index;
     div.classList.add('can-swap');
     li.append(div);
     toDoListWrapper.append(li);
   });
+  status.addCheckBoxHandlers();
 };
 
 export const updateLocalStorage = () => {

@@ -24,3 +24,7 @@ li {
 .can-swap label {
   pointer-events: none;
 }
+
+.checked {
+  text-decoration: line-through;
+}

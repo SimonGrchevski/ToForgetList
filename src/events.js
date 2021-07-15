@@ -1,6 +1,4 @@
-import { toDoList } from './index';
-import { sortList } from './index';
-import { display } from './index';
+import { toDoList, sortList, display } from './index';
 
 let li = [...document.querySelectorAll('li')];
 const events = (() => {
@@ -51,7 +49,7 @@ const events = (() => {
       updateList(parent, dragTarget, target, initialY - event.clientY > 0)
       sortList();
       display();
-      console.log(toDoList);
+      localStorage.setItem('toDoList', JSON.stringify(toDoList));
     }, false);
 
   }
