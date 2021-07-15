@@ -2,7 +2,7 @@ import './style.css';
 import events from './events.js';
 import './status.js';
 
-const toDoListWrapper = document.querySelector('.to-do-list-wrap');
+export const toDoListWrapper = document.querySelector('.to-do-list-wrap');
 
 class Task {
   constructor(description, completed, index) {
@@ -12,10 +12,15 @@ class Task {
   }
 }
 
-let toDoList = [new Task('wash the dishes', false, 5),
-  new Task('complete to do list project', false, 1),
-  new Task('Watch movie', false, 3),
-];
+export let toDoList = [];
+
+if (JSON.parse(localStorage.getItem('toDoList'))) {
+  toDoList = JSON.parse(localStorage.getItem('toDoList'));
+} else {
+  toDoList.push(new Task('wash the dishes', false, 0));
+  toDoList.push(new Task('complete to do list project', false, 1));
+  toDoList.push(new Task('Watch movie', false, 2));
+}
 
 const initializeListWrapper = () => {
   toDoListWrapper.innerHTML = '';
@@ -31,35 +36,31 @@ const initializeListWrapper = () => {
   toDoListWrapper.append(li, inpWrap);
 };
 
-const sortList = () => {
+export const sortList = () => {
   toDoList = toDoList.sort((a, b) => +a.index - +b.index);
 };
 
-const display = () => {
+export const display = () => {
   initializeListWrapper();
 
-  toDoList.forEach((list, i) => {
+  toDoList.forEach((list) => {
     const li = document.createElement('li');
     const des = list.description;
     const div = document.createElement('div');
     div.innerHTML = `<input type='checkbox' id=${des} name=${des}>
   <label draggable='true' for = ${des}>${des}</label>`;
     div.draggable = true;
-    div.dataset.id = i;
+    div.dataset.id = list.index;
     div.classList.add('can-swap');
     li.append(div);
     toDoListWrapper.append(li);
   });
 };
 
-const updateLocalStorage = () => {
+export const updateLocalStorage = () => {
   sortList();
   localStorage.setItem('toDoList', JSON.stringify(toDoList));
 };
-
-if (JSON.parse(localStorage.getItem('toDoList'))) {
-  toDoList = JSON.parse(localStorage.getItem('toDoList'));
-}
 
 updateLocalStorage();
 display();
