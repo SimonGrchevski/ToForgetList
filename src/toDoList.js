@@ -1,13 +1,6 @@
-// export let toDoList = [];
-export const toDoListWrapper = document.querySelector('.to-do-list-wrap');
-class Task {
-  constructor(description, completed, index) {
-    this.description = description;
-    this.completed = completed;
-    this.index = index;
-  }
-}
+import Task from './task.js';
 
+export const toDoListWrapper = document.querySelector('.to-do-list-wrap');
 export class ToDoList {
   constructor() {
     this.toDoList = [];
@@ -15,8 +8,7 @@ export class ToDoList {
 }
 
 export const updateToDoList = (toDoList) => {
-  if (localStorage.getItem('toDoList') !== null &&
-    JSON.parse(localStorage.getItem('toDoList')).length !== 0) {
+  if (localStorage.getItem('toDoList') !== null && JSON.parse(localStorage.getItem('toDoList')).length !== 0) {
     toDoList = JSON.parse(localStorage.getItem('toDoList'));
   } else {
     toDoList.push(new Task('task0', false, 0));

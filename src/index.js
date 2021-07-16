@@ -10,7 +10,7 @@ import {
   sortList,
 } from './toDoList.js';
 
-let tdl = new ToDoList();
+const tdl = new ToDoList();
 tdl.toDoList = updateToDoList(tdl.toDoList);
 sortList(tdl.toDoList);
 updateLocalStorage(tdl.toDoList);

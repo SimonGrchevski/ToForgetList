@@ -1,7 +1,8 @@
+/* eslint no-plusplus: ["error", { "allowForLoopAfterthoughts": true }]
+*/
 import { sortList, display, updateToDoList } from './toDoList.js';
 import status from './status.js';
 
-const li = [...document.querySelectorAll('li')];
 const events = (() => {
   const updateList = (toDoList, parent, dragTarget, target, upwards) => {
     if (upwards) {
@@ -21,7 +22,7 @@ const events = (() => {
   const setDragStart = (toDoList) => {
     let dragTarget;
     let initialY;
-    document.addEventListener('drag', (event) => {
+    document.addEventListener('drag', () => {
 
     }, false);
 
@@ -37,7 +38,7 @@ const events = (() => {
 
     document.addEventListener('drop', (event) => {
       event.stopImmediatePropagation();
-      if (event.target.classList != 'can-swap') return;
+
       const parent = document.querySelector('.to-do-list-wrap');
       const { target } = event;
       toDoList = updateToDoList(toDoList);
