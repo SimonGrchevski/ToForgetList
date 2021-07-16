@@ -1,6 +1,6 @@
-import { toDoList, sortList, display } from './index';
+import { sortList, display } from './toDoList.js';
 
-let li = [...document.querySelectorAll('li')];
+const li = [...document.querySelectorAll('li')];
 const events = (() => {
 
   const updateList = (parent, dragTarget, target, upwards) => {
@@ -14,46 +14,40 @@ const events = (() => {
       parent.insertBefore(target.parentNode, dragTarget.parentNode);
       toDoList[dragTarget.dataset.id].index = toDoList[target.dataset.id].index;
       for (let i = target.dataset.id; i > dragTarget.dataset.id; --i) {
-        console.log(i);
         toDoList[i].index -= 1;
       }
     }
-
-  }
+  };
   const setDragStart = () => {
-
     let dragTarget;
     let initialY;
-    document.addEventListener("drag", function(event) {
+    document.addEventListener('drag', (event) => {
 
     }, false);
 
-    document.addEventListener("dragstart", function(event) {
+    document.addEventListener('dragstart', (event) => {
       event.stopPropagation();
       dragTarget = event.target;
       initialY = event.clientY;
-      console.log(initialY);
     }, true);
 
-    document.addEventListener("dragover", function(event) {
+    document.addEventListener('dragover', (event) => {
       event.preventDefault();
     }, false);
 
-    document.addEventListener("drop", function(event) {
-
+    document.addEventListener('drop', (event) => {
       event.stopImmediatePropagation();
+      const toDoList = JSON.parse(localStorage.getItem('toDoList'));
+      console.log(localStorage);
       if (event.target.classList != 'can-swap') return;
-      let parent = document.querySelector('.to-do-list-wrap');
-      let target = event.target;
-
-      updateList(parent, dragTarget, target, initialY - event.clientY > 0)
+      const parent = document.querySelector('.to-do-list-wrap');
+      const { target } = event;
+      updateList(parent, dragTarget, target, initialY - event.clientY > 0);
+      localStorage.setItem('toDoList', JSON.stringify(toDoList));
       sortList();
       display();
-      localStorage.setItem('toDoList', JSON.stringify(toDoList));
     }, false);
-
-  }
-
+  };
 
   return { setDragStart };
 })();
