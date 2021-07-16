@@ -1,4 +1,4 @@
-export let toDoList = [];
+// export let toDoList = [];
 export const toDoListWrapper = document.querySelector('.to-do-list-wrap');
 class Task {
   constructor(description, completed, index) {
@@ -8,18 +8,26 @@ class Task {
   }
 }
 
-export const updateToDoList = () => {
-  if (JSON.parse(localStorage.getItem('toDoList'))) {
+export class ToDoList {
+  constructor() {
+    this.toDoList = [];
+  }
+}
+
+export const updateToDoList = (toDoList) => {
+  if (localStorage.getItem('toDoList') !== null &&
+    JSON.parse(localStorage.getItem('toDoList')).length !== 0) {
     toDoList = JSON.parse(localStorage.getItem('toDoList'));
   } else {
-    toDoList.push(new Task('wash the dishes', false, 0));
-    toDoList.push(new Task('complete to do list project', false, 1));
-    toDoList.push(new Task('Watch movie', false, 2));
+    toDoList.push(new Task('task0', false, 0));
+    toDoList.push(new Task('task1', false, 1));
+    toDoList.push(new Task('task2', false, 2));
   }
+  return toDoList;
 };
 
-export const sortList = () => {
-  toDoList = toDoList.sort((a, b) => +a.index - +b.index);
+export const sortList = (toDoList) => {
+  toDoList.sort((a, b) => +a.index - +b.index);
 };
 
 const initializeListWrapper = () => {
@@ -36,7 +44,7 @@ const initializeListWrapper = () => {
   toDoListWrapper.append(li, inpWrap);
 };
 
-export const display = () => {
+export const display = (toDoList) => {
   initializeListWrapper();
   toDoList.forEach((list) => {
     const li = document.createElement('li');
@@ -64,7 +72,7 @@ export const display = () => {
   });
 };
 
-export const updateLocalStorage = () => {
-  sortList();
+export const updateLocalStorage = (toDoList) => {
+  sortList(toDoList);
   localStorage.setItem('toDoList', JSON.stringify(toDoList));
 };

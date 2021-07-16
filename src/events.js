@@ -1,9 +1,9 @@
-import { toDoList, sortList, display } from './toDoList.js';
+import { sortList, display, updateToDoList } from './toDoList.js';
+import status from './status.js';
 
 const li = [...document.querySelectorAll('li')];
 const events = (() => {
-
-  const updateList = (parent, dragTarget, target, upwards) => {
+  const updateList = (toDoList, parent, dragTarget, target, upwards) => {
     if (upwards) {
       parent.insertBefore(dragTarget.parentNode, target.parentNode);
       toDoList[dragTarget.dataset.id].index = toDoList[target.dataset.id].index;
@@ -18,7 +18,7 @@ const events = (() => {
       }
     }
   };
-  const setDragStart = () => {
+  const setDragStart = (toDoList) => {
     let dragTarget;
     let initialY;
     document.addEventListener('drag', (event) => {
@@ -37,14 +37,15 @@ const events = (() => {
 
     document.addEventListener('drop', (event) => {
       event.stopImmediatePropagation();
-      console.log(localStorage);
       if (event.target.classList != 'can-swap') return;
       const parent = document.querySelector('.to-do-list-wrap');
       const { target } = event;
-      updateList(parent, dragTarget, target, initialY - event.clientY > 0);
+      toDoList = updateToDoList(toDoList);
+      updateList(toDoList, parent, dragTarget, target, initialY - event.clientY > 0);
+      sortList(toDoList);
       localStorage.setItem('toDoList', JSON.stringify(toDoList));
-      sortList();
-      display();
+      display(toDoList);
+      status.addCheckBoxHandlers(toDoList);
     }, false);
   };
 

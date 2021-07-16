@@ -22,6 +22,7 @@
   "devDependencies": {
     "babel-eslint": "^10.1.0",
     "css-loader": "^5.2.7",
+    "devtool": "^2.3.1",
     "eslint": "^7.30.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.23.4",
@@ -36,5 +37,6 @@
     "webpack-cli": "^4.7.2",
     "webpack-dev-server": "^3.11.2"
   },
-  "main": "webpack.config.js"
+  "main": "webpack.config.js",
+  "dependencies": {}
 }
