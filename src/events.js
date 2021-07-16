@@ -1,4 +1,4 @@
-import { sortList, display } from './toDoList.js';
+import { toDoList, sortList, display } from './toDoList.js';
 
 const li = [...document.querySelectorAll('li')];
 const events = (() => {
@@ -37,7 +37,6 @@ const events = (() => {
 
     document.addEventListener('drop', (event) => {
       event.stopImmediatePropagation();
-      const toDoList = JSON.parse(localStorage.getItem('toDoList'));
       console.log(localStorage);
       if (event.target.classList != 'can-swap') return;
       const parent = document.querySelector('.to-do-list-wrap');
