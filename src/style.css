@@ -6,7 +6,7 @@ body {
   float: right;
 }
 
-.material-icons:hover{
+.material-icons:hover {
   cursor: pointer;
 }
 
@@ -30,17 +30,12 @@ li {
 }
 
 .can-swap label {
-  /* pointer-events: none; */
   outline: none;
 }
 
 .checked {
   text-decoration: line-through;
 }
-/* 
-.task {
-  display: flex;
-} */
 
 .center {
   display: flex;
@@ -53,10 +48,10 @@ button {
   height: 40px;
 }
 
-button:hover{
+button:hover {
   text-decoration: underline;
 }
 
-.edit-btn{
-  margin-left:70%;
+.edit-btn {
+  margin-left: 70%;
 }
