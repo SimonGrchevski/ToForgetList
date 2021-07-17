@@ -21,7 +21,7 @@ const crud = (() => {
     const task = document.querySelector('.newTask');
 
     task.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter' && task.value.length > 0) { // && task.value.length > 3
+      if (e.key === 'Enter' && task.value.length > 0) {
         addNewTask(task);
         status.addCheckBoxHandlers(toDoList);
         setAddEvent();
@@ -34,7 +34,6 @@ const crud = (() => {
 
   const editTask = (lbl) => {
     lbl.addEventListener('keyup', () => {
-      // let toDoList = [];
       toDoList = updateToDoList(toDoList);
       editToDoList(toDoList, lbl.parentNode.dataset.id, lbl.innerHTML);
       updateLocalStorage(toDoList);
@@ -49,7 +48,6 @@ const crud = (() => {
 
   const deleteTask = (btn) => {
     btn.addEventListener('click', () => {
-      // let toDoList = [];
       toDoList = updateToDoList(toDoList);
       deleteToDo(toDoList, btn.parentNode.dataset.id);
       updateLocalStorage(toDoList);
