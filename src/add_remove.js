@@ -1,7 +1,7 @@
 import TrashImg from './delete.svg';
 import MoreImg from './more.svg';
 
-const addTask = (tasks)  => {
+const addTask = (tasks) => {
   const str = document.getElementById('description').value;
   const firstLetter = str.charAt(0).toUpperCase();
   str.replace(str.charAt(0), firstLetter);
@@ -37,7 +37,7 @@ const addTask = (tasks)  => {
     });
     window.update(tasks);
   }
-}
+};
 
 const removeTask = (data, tasks) => {
   const str = data.replace('div', '');
@@ -48,9 +48,9 @@ const removeTask = (data, tasks) => {
     }
   });
   window.update(newTasks);
-}
+};
 
- const editTask = (divId, tasks) => {
+const editTask = (divId, tasks) => {
   const list = document.getElementsByClassName('drag-div');
   Array.from(list).forEach((li) => {
     if (li.id === divId) {
@@ -68,7 +68,7 @@ const removeTask = (data, tasks) => {
       img.style.cursor = 'all-scroll';
     }
   });
-}
+};
 
 const clear = (tasks) => {
   const temp = [];
@@ -78,6 +78,6 @@ const clear = (tasks) => {
     }
   });
   window.update(temp);
-}
+};
 
 export { addTask, editTask, clear };
