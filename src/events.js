@@ -47,6 +47,7 @@ const events = (() => {
         sortList(toDoList);
         localStorage.setItem('toDoList', JSON.stringify(toDoList));
         display(toDoList);
+        crud.setAddEvent();
         status.addCheckBoxHandlers(toDoList);
         crud.setEditEvent();
       }

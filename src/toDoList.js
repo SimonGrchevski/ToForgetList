@@ -1,6 +1,3 @@
-import Task from './task.js';
-import crud from './crud.js';
-
 export const toDoListWrapper = document.querySelector('.to-do-list-wrap');
 export class ToDoList {
   constructor() {
@@ -15,15 +12,13 @@ export const updateToDoList = (toDoList) => {
     // toDoList.push(new Task('task0', false, 0));
     // toDoList.push(new Task('task1', false, 1));
     // toDoList.push(new Task('task2', false, 2));
-    
-    
+
   }
   return toDoList;
 };
 
 export const sortList = (toDoList) => {
-  if(toDoList.length != 0)
-    toDoList.sort((a, b) => +a.index - +b.index);
+  if (toDoList.length !== 0) toDoList.sort((a, b) => +a.index - +b.index);
 };
 
 export const editToDoList = (toDoList, index, value) => {
@@ -42,7 +37,6 @@ export const initializeListWrapper = () => {
   inp.placeholder = 'Add to your list...';
   inpWrap.append(inp);
   toDoListWrapper.append(li, inpWrap);
-  crud.setAddEvent();
 };
 
 export const display = (toDoList) => {
