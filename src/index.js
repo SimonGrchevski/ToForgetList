@@ -40,7 +40,7 @@ window.update = (data) => {
 };
 
 
-window.displayTasks = ()  => {
+window.displayTasks = () => {
   const container = document.getElementById('container');
   const list = document.createElement('ul');
   list.id = 'list';
