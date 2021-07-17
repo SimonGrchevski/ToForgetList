@@ -2,7 +2,13 @@
 
 # To-do-list
 
-> This project is simple minimalist to-do-list. You can add new tasks and check one when you finish it.
+> This project is simple minimalist to-do-list.Features:
+
+  - Add new Task
+  - Remove Task
+  - Reorder tasks
+  - Delete task
+  - Clear completed tasks
 
 ![screenshot](./Screenshot.png)
 
