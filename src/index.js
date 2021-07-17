@@ -7,7 +7,7 @@ import {
   updateToDoList,
   updateLocalStorage,
   display,
-  sortList,
+  sortList
 } from './toDoList.js';
 
 const tdl = new ToDoList();
