@@ -11,7 +11,7 @@ const crud = (() => {
 
   const addNewTask = (task) => {
     toDoList = updateToDoList(toDoList);
-    toDoList.push(new Task(task.value, false, toDoList.length));
+    toDoList.push(new Task(task.value, false, toDoList.length+1));
     task.value = '';
     updateLocalStorage(toDoList);
     display(toDoList);
