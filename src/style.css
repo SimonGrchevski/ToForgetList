@@ -28,3 +28,11 @@ li {
 .checked {
   text-decoration: line-through;
 }
+
+.task {
+  display: flex;
+}
+
+.edit-btn{
+  margin-left:70%;
+}

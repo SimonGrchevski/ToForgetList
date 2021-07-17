@@ -11,15 +11,18 @@ export const updateToDoList = (toDoList) => {
   if (localStorage.getItem('toDoList') !== null && JSON.parse(localStorage.getItem('toDoList')).length !== 0) {
     toDoList = JSON.parse(localStorage.getItem('toDoList'));
   } else {
-    toDoList.push(new Task('task0', false, 0));
-    toDoList.push(new Task('task1', false, 1));
-    toDoList.push(new Task('task2', false, 2));
+    // toDoList.push(new Task('task0', false, 0));
+    // toDoList.push(new Task('task1', false, 1));
+    // toDoList.push(new Task('task2', false, 2));
+    
+    console.log("FDFFD");
   }
   return toDoList;
 };
 
 export const sortList = (toDoList) => {
-  toDoList.sort((a, b) => +a.index - +b.index);
+  if(toDoList.length != 0)
+    toDoList.sort((a, b) => +a.index - +b.index);
 };
 
 const initializeListWrapper = () => {
@@ -55,7 +58,11 @@ export const display = (toDoList) => {
     } else {
       inp.checked = false;
     }
-    div.append(inp, label);
+    const span = document.createElement('span');
+    span.innerHTML = 'E';
+    span.classList.add('edit-btn');
+    div.classList.add('task');
+    div.append(inp, label, span);
     div.draggable = true;
     div.dataset.id = list.index;
     div.classList.add('can-swap');
