@@ -1,19 +1,25 @@
-import { updateToDoList } from './toDoList.js';
+const updateTasks = () => {
+  const list = document.getElementsByTagName('li');
+  const tempTasks = [];
 
-const status = (() => {
-  const addCheckBoxHandlers = (toDoList) => {
-    [...document.querySelectorAll('.check')].forEach((box) => {
-      box.addEventListener('change', () => {
-        const toDoListLS = JSON.parse(localStorage.getItem('toDoList'));
-        box.nextElementSibling.classList.toggle('checked');
-        toDoListLS[box.parentElement.dataset.id].completed = box.checked;
-        localStorage.setItem('toDoList', JSON.stringify(toDoListLS));
-        updateToDoList(toDoList);
-      });
+  if (list.length !== 0) {
+    [...list].forEach((li, index) => {
+      const div = li.getElementsByTagName('div')[0];
+      const completed = div.getElementsByTagName('input')[0].checked;
+      const id = div.getElementsByTagName('input')[0].name;
+      const description = div.getElementsByTagName('input')[1].value;
+
+      const task = {
+        completed,
+        description,
+        index,
+        id,
+      };
+      tempTasks.push(task);
     });
-  };
+  }
 
-  return { addCheckBoxHandlers };
-})();
+  return tempTasks;
+}
 
-export default status;
+export default updateTasks;
