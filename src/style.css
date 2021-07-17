@@ -2,6 +2,14 @@ body {
   background-color: #f9f9f9;
 }
 
+.material-icons {
+  float: right;
+}
+
+.material-icons:hover {
+  cursor: pointer;
+}
+
 .newTask {
   border: none;
   outline: none;
@@ -22,9 +30,28 @@ li {
 }
 
 .can-swap label {
-  pointer-events: none;
+  outline: none;
 }
 
 .checked {
   text-decoration: line-through;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+button {
+  background: none;
+  border: none;
+  height: 40px;
+}
+
+button:hover {
+  text-decoration: underline;
+}
+
+.edit-btn {
+  margin-left: 70%;
 }
