@@ -25,7 +25,7 @@ export const deleteToDo = (toDoList, index) => {
   toDoList.forEach((task, i) => {
     task.index = i;
   });
-}
+};
 
 export const initializeListWrapper = () => {
   toDoListWrapper.innerHTML = '';
