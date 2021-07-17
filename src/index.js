@@ -7,7 +7,7 @@ import { addTask, editTask, clear } from './add_remove.js';
 
 let tasks = null;
 
-window.updateLocalStorage = (retrieve)  => {
+window.updateLocalStorage = (retrieve) => {
   if (retrieve === true) {
     if (tasks === null) {
       tasks = JSON.parse(window.localStorage.getItem('tasks'));
@@ -27,7 +27,6 @@ window.restart = () => {
   window.updateLocalStorage(false);
 };
 
-
 window.update = (data) => {
   if (!data) {
     const response = updateTasks();
@@ -38,7 +37,6 @@ window.update = (data) => {
 
   window.updateLocalStorage(false);
 };
-
 
 window.displayTasks = () => {
   const container = document.getElementById('container');
