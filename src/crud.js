@@ -2,7 +2,7 @@
 
 import Task from './task.js';
 import {
-  updateToDoList, updateLocalStorage, display, editToDoList, deleteToDo,
+  updateToDoList, updateLocalStorage, display, editToDoList, deleteToDo, filterToDo,
 } from './toDoList.js';
 import status from './status.js';
 
@@ -25,7 +25,9 @@ const crud = (() => {
         addNewTask(task);
         status.addCheckBoxHandlers(toDoList);
         setAddEvent();
+        setEditEvent();
         setDeleteEvent();
+        setFilterEvent();
       }
     });
   };
@@ -52,8 +54,11 @@ const crud = (() => {
       deleteToDo(toDoList, btn.parentNode.dataset.id);
       updateLocalStorage(toDoList);
       display(toDoList);
+      status.addCheckBoxHandlers(toDoList);
       setAddEvent();
+      setEditEvent();
       setDeleteEvent();
+      setFilterEvent();
     });
   };
 
@@ -63,7 +68,23 @@ const crud = (() => {
     });
   };
 
-  return { setAddEvent, setEditEvent, setDeleteEvent };
+  const setFilterEvent = () => {
+    document.querySelector('button').addEventListener('click', () => {
+      toDoList = updateToDoList(toDoList);
+      toDoList = filterToDo(toDoList);
+      updateLocalStorage(toDoList);
+      display(toDoList);
+      status.addCheckBoxHandlers(toDoList);
+      setAddEvent();
+      setEditEvent();
+      setDeleteEvent();
+      setFilterEvent();
+    });
+  };
+
+  return {
+    setAddEvent, setEditEvent, setDeleteEvent, setFilterEvent,
+  };
 })();
 
 export default crud;

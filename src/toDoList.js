@@ -27,6 +27,14 @@ export const deleteToDo = (toDoList, index) => {
   });
 };
 
+export const filterToDo = (toDoList) => {
+  toDoList = toDoList.filter((task) => task.completed === false);
+  toDoList.forEach((task, i) => {
+    task.index = i;
+  });
+  return toDoList;
+};
+
 export const initializeListWrapper = () => {
   toDoListWrapper.innerHTML = '';
   const li = document.createElement('li');
@@ -72,6 +80,12 @@ export const display = (toDoList) => {
     li.append(div);
     toDoListWrapper.append(li);
   });
+  const buttonWrapper = document.createElement('div');
+  buttonWrapper.classList.add('center');
+  const button = document.createElement('button');
+  button.innerHTML = 'Clear all completed';
+  buttonWrapper.append(button);
+  toDoListWrapper.append(buttonWrapper);
 };
 
 export const updateLocalStorage = (toDoList) => {

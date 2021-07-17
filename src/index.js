@@ -20,3 +20,4 @@ events.setDragStart(tdl.toDoList);
 crud.setAddEvent();
 crud.setEditEvent();
 crud.setDeleteEvent();
+crud.setFilterEvent();
