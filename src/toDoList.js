@@ -15,15 +15,19 @@ export const updateToDoList = (toDoList) => {
     // toDoList.push(new Task('task0', false, 0));
     // toDoList.push(new Task('task1', false, 1));
     // toDoList.push(new Task('task2', false, 2));
-
-
+    
+    
   }
   return toDoList;
 };
 
 export const sortList = (toDoList) => {
-  if (toDoList.length != 0)
+  if(toDoList.length != 0)
     toDoList.sort((a, b) => +a.index - +b.index);
+};
+
+export const editToDoList = (toDoList, index, value) => {
+  toDoList[index].description = value;
 };
 
 export const initializeListWrapper = () => {
@@ -54,6 +58,7 @@ export const display = (toDoList) => {
     const label = document.createElement('label');
     label.draggable = true;
     label.textContent = des;
+    label.setAttribute('contenteditable', '');
     if (list.completed) {
       inp.checked = true;
       label.classList.add('checked');

@@ -22,7 +22,8 @@ li {
 }
 
 .can-swap label {
-  pointer-events: none;
+  /* pointer-events: none; */
+  outline: none;
 }
 
 .checked {

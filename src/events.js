@@ -2,6 +2,7 @@
 */
 import { sortList, display, updateToDoList } from './toDoList.js';
 import status from './status.js';
+import crud from './crud.js';
 
 const events = (() => {
   const updateList = (toDoList, parent, dragTarget, target, upwards) => {
@@ -38,15 +39,17 @@ const events = (() => {
 
     document.addEventListener('drop', (event) => {
       event.stopImmediatePropagation();
-
-      const parent = document.querySelector('.to-do-list-wrap');
-      const { target } = event;
-      toDoList = updateToDoList(toDoList);
-      updateList(toDoList, parent, dragTarget, target, initialY - event.clientY > 0);
-      sortList(toDoList);
-      localStorage.setItem('toDoList', JSON.stringify(toDoList));
-      display(toDoList);
-      status.addCheckBoxHandlers(toDoList);
+      if (event.target.classList.contains('can-swap')) {
+        const parent = document.querySelector('.to-do-list-wrap');
+        const { target } = event;
+        toDoList = updateToDoList(toDoList);
+        updateList(toDoList, parent, dragTarget, target, initialY - event.clientY > 0);
+        sortList(toDoList);
+        localStorage.setItem('toDoList', JSON.stringify(toDoList));
+        display(toDoList);
+        status.addCheckBoxHandlers(toDoList);
+        crud.setEditEvent();
+      }
     }, false);
   };
 
