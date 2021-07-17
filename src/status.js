@@ -20,6 +20,6 @@ const updateTasks = () => {
   }
 
   return tempTasks;
-}
+};
 
 export default updateTasks;
