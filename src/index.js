@@ -7,7 +7,7 @@ import {
   updateToDoList,
   updateLocalStorage,
   display,
-  sortList
+  sortList,
 } from './toDoList.js';
 
 const tdl = new ToDoList();
@@ -19,3 +19,4 @@ status.addCheckBoxHandlers(tdl.toDoList);
 events.setDragStart(tdl.toDoList);
 crud.setAddEvent();
 crud.setEditEvent();
+crud.setDeleteEvent();

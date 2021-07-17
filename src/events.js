@@ -50,6 +50,7 @@ const events = (() => {
         crud.setAddEvent();
         status.addCheckBoxHandlers(toDoList);
         crud.setEditEvent();
+        crud.setDeleteEvent();
       }
     }, false);
   };

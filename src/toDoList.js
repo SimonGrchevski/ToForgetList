@@ -8,11 +8,6 @@ export class ToDoList {
 export const updateToDoList = (toDoList) => {
   if (localStorage.getItem('toDoList') !== null && JSON.parse(localStorage.getItem('toDoList')).length !== 0) {
     toDoList = JSON.parse(localStorage.getItem('toDoList'));
-  } else {
-    // toDoList.push(new Task('task0', false, 0));
-    // toDoList.push(new Task('task1', false, 1));
-    // toDoList.push(new Task('task2', false, 2));
-
   }
   return toDoList;
 };
@@ -24,6 +19,13 @@ export const sortList = (toDoList) => {
 export const editToDoList = (toDoList, index, value) => {
   toDoList[index].description = value;
 };
+
+export const deleteToDo = (toDoList, index) => {
+  toDoList.splice(index, 1);
+  toDoList.forEach((task, i) => {
+    task.index = i;
+  });
+}
 
 export const initializeListWrapper = () => {
   toDoListWrapper.innerHTML = '';
@@ -59,9 +61,9 @@ export const display = (toDoList) => {
     } else {
       inp.checked = false;
     }
-    const span = document.createElement('span');
-    span.innerHTML = 'E';
-    span.classList.add('edit-btn');
+    const span = document.createElement('div');
+    span.innerHTML = 'delete';
+    span.classList.add('material-icons');
     div.classList.add('task');
     div.append(inp, label, span);
     div.draggable = true;
